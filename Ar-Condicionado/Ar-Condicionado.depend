@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1581465757 source:c:\users\lab33\documents\projetos\ar-condicionado\main.cpp
+	<iostream>
+	<stdlib.h>
+	"lib-ar.h"
+
+1581465624 c:\users\lab33\documents\projetos\ar-condicionado\lib-ar.h
+

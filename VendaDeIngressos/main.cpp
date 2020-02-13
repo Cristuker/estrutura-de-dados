@@ -15,10 +15,32 @@ using namespace std;
 
 int main(){
 
-    int acao = 1;
+    int action = 1;
 
     while(true){
-        cout << "Menu" << cout;
+        cout << "Menu" << endl;
+        cout << "1 - Comprar ingressos" << endl;
+        cout << "2 - Devolver ingresso" << endl;
+        cout << "3 - Trocar de lugar" << endl;
+        cout << "-> ";
+        cin >> action;
+
+        switch(action){
+            case 1:{
+                break;
+            }
+            case 2:{
+                break;
+            }
+            case 3:{
+                break;
+            }
+            default:{
+                return 0;
+                break;
+            }
+
+        }
 
     }
 }

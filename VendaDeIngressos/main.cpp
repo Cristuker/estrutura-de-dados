@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "functions.h"
 /*Requisitos
 -Controla número de pessoas, entrada e saída, lugares disponíveis;
 
@@ -15,6 +15,8 @@ using namespace std;
 
 int main(){
 
+    Sells s;
+
     int action = 1;
 
     while(true){
@@ -27,6 +29,7 @@ int main(){
 
         switch(action){
             case 1:{
+                    cout<< s.buy();
                 break;
             }
             case 2:{

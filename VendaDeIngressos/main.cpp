@@ -2,15 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "functions.h"
-/*Requisitos-Controla número de pessoas - okentrada e saída - oklugares disponíveis -ok
 
--Ao inicicializar, entrar com capacidade máxima;
-
-Menu:
-1-Comprar ingresso
-2-Devolver Ingresso
-3-Trocar de Lugar
-*/
 
 using namespace std;
 
@@ -20,37 +12,37 @@ int main(){
 
     int action = 1;
 
+
     while(true){
         cout << "Menu" << endl;
         cout <<"-----------------" << endl;
         cout <<"Total de lugares disponiveis: "<< s.getAvaibleTickets() <<endl;
-        cout <<"Total de pessoa :" << s.getAvaibleTickets() <<endl;
         cout <<"-----------------" << endl;
         cout << "1 - Comprar ingressos" << endl;
         cout << "2 - Devolver ingresso" << endl;
         cout << "3 - Trocar de lugar" << endl;
+        cout << "4 - Lugares ocupados" << endl;
+        cout << "5 - Sair" << endl;
         cout << "-> ";
         cin >> action;
 
         switch(action){
             case 1:{
-                    int seat;
 
-                    if(!s.getAvaibleTickets() <= 100){
-
-                        s.buyTickets();
-
+                    if(s.getAvaibleTickets() <= 100){
+                        int seat = 0;
                         cout << "Qual poltrona de 1 a 100"<< endl;
-                        cout << "->" ;
+                        cout << "-> " ;
                         cin >> seat;
 
-                        int thisSeatIsInUse = s.inUseSeat(seat);
+                        bool thisSeatIsInUse = s.inUseSeat(seat);
 
                         if(!thisSeatIsInUse){
+                            s.buyTickets();
                             s.registerSeat(seat);
                             cout << "Seu lugar "<< seat << " foi registrado com sucesso!" << endl;
                         }else{
-                            cout << "Esse lugar já está reservado, por favor escola outro!" << endl;
+                            cout << "Esse lugar já está reservado, por favor escolha outro!" << endl;
                         }
 
                     }else{
@@ -62,35 +54,73 @@ int main(){
             }
 
             case 2:{
-                int seat;
-
-                cout << "Digite o número da sua poltrona " << endl;
-                cout <<"-> ";
-                cin >> seat;
-                //lugar dela
-                bool existSeat = s.thisSeatExist(seat);
-
-                if(!existSeat){
-                    cout << "Esse lugar não está reservado" << endl;
-                    break;
-                }
-                cout << "Digite o número da poltrona que você deseja" << endl;
-                cout <<"-> ";
+                int seat = 0;
+                cout << "Digite o numero do seu ingresso" << endl;
+                cout << "-> ";
                 cin >> seat;
 
-                existSeat = s.thisSeatExist(seat);
+                bool thisSeatIsInUse = s.inUseSeat(seat);
 
-                if(existSeat){
-                    cout << "Já existe alguém nesse lugar." << endl;
-                    break;
+                if(thisSeatIsInUse){
+                    bool result = s.backTicket(seat);
+                    if(result){
+                        cout <<"Ingresso devolvido com sucesso!" << endl;
+                    }else{
+                        cout <<"Houve uma falha ao registrar a devolução do seu ingresso" << endl;
+                    }
+                }else{
+                    cout << "O seu ingresso é invalido!" << endl;
                 }
 
                 s.clearDsipaly();
+
                 break;
             }
 
             case 3:{
+                int seat, mySeat;
+
+                cout <<"Digite o número da sua poltrona " << endl;
+                cout <<"-> ";
+                cin >> mySeat;
+
+                bool existSeat = s.thisSeatExist(mySeat);
+
+                if(!existSeat){
+                    cout << "Esse lugar não está reservado" << endl;
+                    s.clearDsipaly();
+                    break;
+                }
+
+
+
+                cout <<"Digite o número da poltrona que você deseja" << endl;
+                cout <<"-> ";
+                cin >> seat;
+
+                bool existToSeat = s.thisSeatExist(seat);
+
+                if(existToSeat){
+                    cout << "Já existe alguém nesse lugar." << endl;
+                    s.clearDsipaly();
+                    break;
+                }
+                cout <<"Troca registrada com sucesso!" << endl;
+
+                s.clearDsipaly();
+
                 break;
+            }
+            case 4 :{
+                s.showSeatsInUse();
+                s.clearDsipaly();
+                break;
+            }
+            case 5 :{
+
+                cout << "Volte sempre! :D";
+
+                return 0;
             }
 
             default:{

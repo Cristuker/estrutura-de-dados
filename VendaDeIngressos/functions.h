@@ -1,45 +1,50 @@
 #ifndef functions_H_INCLUDED
 #define functions_H_INCLUDED
 #include <time.h>
+using namespace std;
 struct Sells{
 
     private:
         int maxTickets = 100;
-        int avaibleTickets = 100;
-        int seats[100];
+        int i = 0;
+        int seats[101] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
 
     public:
         void buyTickets(){
-            maxTickets-- ;
-            avaibleTickets-- ;
+            maxTickets -- ;
         }
 
 
         int getAvaibleTickets(){
-            return avaibleTickets;
+            return maxTickets;
         }
 
         void registerSeat(int newSeat){
-            int ticketNumber = 100 - avaibleTickets;
-            seats[ticketNumber] = newSeat;
+            seats[i] = newSeat;
+            i++;
         }
 
         bool inUseSeat(int seat){
 
-            for(int index = 0; index < 100; index++){
+            int index;
 
+            for(index = 0; index <= 100; index++){
                 if(seat == seats[index]){
                     return true;
                 }
             }
+
             return false;
+
+
 
         }
 
         void clearDsipaly(){
             int time = clock();
 
-            while(clock() - time < 500000){
+            while(clock() - time < 3000000){
 
             }
 
@@ -48,18 +53,52 @@ struct Sells{
         }
 
         bool thisSeatExist(int seat){
-            for(int index = 0; index < 100; index++){
+
+            for(int index = 0; index <= 100; index++){
 
                 if(seat == seats[index]){
                     return true;
 
-                }else{
-                    return false;
                 }
 
             }
+            return false;
 
         }
+
+        bool backTicket(int seat){
+
+            for(int index = 0; index <=100;index++){
+
+                if(seat == seats[index]){
+
+                    seats[index] = 0;
+
+                    maxTickets -- ;
+
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
+        void showSeatsInUse(){
+            for(int index = 0; index <=100;index++){
+
+                if(seats[index] != 0){
+
+                     cout << seats[index] << " ";
+
+                }
+            }
+
+            cout << " " << endl;
+
+        }
+
+
 };
 
 #endif // functions_H_INCLUDED

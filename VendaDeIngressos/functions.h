@@ -88,8 +88,9 @@ struct Sells{
             for(int index = 0; index <=100;index++){
 
                 if(seats[index] != 0){
-
-                     cout << seats[index] << " ";
+                    cout << "---------" << endl;
+                    cout << "Assentos em uso: " ;
+                    cout << seats[index] << " ";
 
                 }
             }

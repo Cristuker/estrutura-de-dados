@@ -7,14 +7,23 @@ struct Sells{
     private:
         int maxTickets = 100;
         int i = 0;
-        int seats[101] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
+        int seats[100][100];
+        int rows;
+        int seatsInRow;
 
     public:
         void buyTickets(){
             maxTickets -- ;
         }
+        
+    //Deixar dinamico o tamanho do teatro
 
+        int registerMaxTickets(int maxRows, int maxSeatsInRow){
+                this.rows = maxRows;
+                this.seatsInRow = maxSeatsInRow;
+                
+                
+        }
 
         int getAvaibleTickets(){
             return maxTickets;
